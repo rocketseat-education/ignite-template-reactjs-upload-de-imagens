@@ -18,7 +18,8 @@ type Card = {
 }
 
 export default function Home(): JSX.Element {
-  const fetchingData = async ({ pageParam = 0 }) => await api.get('images?after=' + pageParam)
+  //const fetchingData = async ({ pageParam = 0 }) => await api.get('/api/images?after=' + pageParam)
+  const fetchingData = async ({ pageParam = 0 }) => await api.get('/api/images');
   const {
     data,
     isLoading,
@@ -43,8 +44,8 @@ export default function Home(): JSX.Element {
           title: image.title,
           description: image.description,
           url: image.url,
+          id: image.id,
           ts: image.ts,
-          id: image.id
         })
       })
     }).flat()
@@ -59,7 +60,6 @@ export default function Home(): JSX.Element {
       { "title": "Orlando", "description": "USA", "url": "https://i.ibb.co/LQJ2r78/Orlando.jpg", "ts": 1627927625150000, "id": "305836877564346948" }
       ]
   */
-
   return (
     <>
       {
@@ -72,22 +72,20 @@ export default function Home(): JSX.Element {
       <Header />
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
-        <>
-          {
-            hasNextPage && (
-              <Button
-                onClick={() => fetchNextPage()}
-                disabled={isFetchingNextPage}
-                colorScheme="orange"
-              >
-                {isFetchingNextPage
-                  ? 'Carregando...'
-                  : hasNextPage && 'Carregar mais'
-                }
-              </Button>
-            )
-          }
-        </>
+        {
+          hasNextPage && (
+            <Button
+              onClick={() => fetchNextPage()}
+              disabled={isFetchingNextPage}
+              colorScheme="orange"
+            >
+              {isFetchingNextPage
+                ? 'Carregando...'
+                : hasNextPage && 'Carregar mais'
+              }
+            </Button>
+          )
+        }
       </Box>
     </>
   );
