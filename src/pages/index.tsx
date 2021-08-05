@@ -19,7 +19,7 @@ type Card = {
 
 export default function Home(): JSX.Element {
   //const fetchingData = async ({ pageParam = 0 }) => await api.get('/api/images?after=' + pageParam)
-  const fetchingData = async ({ pageParam = 0 }) => await api.get('/api/images');
+  const fetchingData = async () => await api.get('/api/images');
   const {
     data,
     isLoading,
