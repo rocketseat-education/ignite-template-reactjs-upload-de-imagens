@@ -38,7 +38,7 @@ export default function Home(): JSX.Element {
 
   const formattedData = useMemo(() => {
     // TODO FORMAT AND FLAT DATA ARRAY
-    const flatData = data?.pages.map((page) => {
+    const flatDataArray = data?.pages.map((page) => {
       return page.data.data.map((image) => {
         return ({
           title: image.title,
@@ -49,7 +49,7 @@ export default function Home(): JSX.Element {
         })
       })
     }).flat()
-    return flatData;
+    return flatDataArray;
   }, [data]);
   /*
     const formattedData =
