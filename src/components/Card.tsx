@@ -6,6 +6,7 @@ import {
   Skeleton,
   SkeletonText,
 } from '@chakra-ui/react';
+import { render } from '@testing-library/react';
 import { useState } from 'react';
 
 interface Card {
@@ -19,6 +20,7 @@ interface CardProps {
   data: Card;
   viewImage: (url: string) => void;
 }
+
 
 export function Card({ data, viewImage }: CardProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
